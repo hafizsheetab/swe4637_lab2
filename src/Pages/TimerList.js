@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
-import Timer from './Components/Timer'
-import { TimerContext } from './Context/TimerContext';
+import Timer from '../Components/Timer'
+import { TimerContext } from '../Context/TimerContext';
 
 export default function TimerList(){
     const {timerContext, setTimerContext} = useContext(TimerContext)

@@ -3,8 +3,8 @@ import { TimerContext } from "../Context/TimerContext";
 
 export default function Timer({ timer }) {
     const { timerContext, setTimerContext } = useContext(TimerContext);
-    const [secs, setSecs] = useState(0)
-    const [intervalId, setInterValId] = useState(null)
+    const [secs, setSecs] = useState(timer.secs);
+    const [intervalId, setInterValId] = useState(null);
     const [editButton, setEditButton] = useState(false);
     const [startButton, setStartButton] = useState(false);
     const [timerData, setTimerData] = useState({
@@ -12,7 +12,7 @@ export default function Timer({ timer }) {
         project: timer.project,
         secs: timer.secs,
     });
-    
+
     const { title, project } = timerData;
     const secstToTime = (secs) => {
         let hours = Math.floor(secs / (60 * 60));
@@ -45,22 +45,20 @@ export default function Timer({ timer }) {
     };
     const onClickStartButton = () => {
         setStartButton(true);
-        if(!timerData.intervalId){
-            let intervalId = setInterval(() => {
-                setSecs(prev => prev + 1)
-            }, 1000);
-            console.log(intervalId)
-            setInterValId(intervalId)
-        }
+        let intervalId = setInterval(() => {
+            setSecs((prev) => prev + 1);
+        }, 1000);
+        console.log(intervalId);
+        setInterValId(intervalId);
     };
     const onClickStopButton = () => {
         setStartButton(false);
-        console.log(intervalId)
+        console.log(intervalId);
         clearInterval(intervalId);
-        setInterValId(null)
+        setInterValId(null);
     };
     const increaseSec = () => {
-        console.log(timerData.secs)
+        console.log(timerData.secs);
         // setTimerData({...timerData, secs: timerData.secs + 1})
     };
 
